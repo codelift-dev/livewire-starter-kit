@@ -12,6 +12,27 @@ If you are looking for the alternate configurations of this starter kit, they ca
 
 - [workos](https://github.com/laravel/livewire-starter-kit/tree/workos) - if WorkOS is selected for authentication
 
+## Setup
+
+On a fresh clone, the reliable sequence is Composer first, then Node, then migrate + test:
+
+```
+composer install
+cp .env.example .env
+php artisan key:generate
+touch database/database.sqlite
+php artisan migrate
+npm install
+npm run build
+php artisan test
+```
+
+Unlike the React and Vue variants, this Livewire starter does **not** include
+`@laravel/vite-plugin-wayfinder`, so `npm run build` does not depend on
+`vendor/autoload.php` being present. The order above is still the cleanest
+path because migrations and tests assume the `.env`, key, and SQLite database
+file are in place.
+
 ## Official Documentation
 
 Documentation for all Laravel starter kits can be found on the [Laravel website](https://laravel.com/docs/starter-kits).
