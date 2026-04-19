@@ -1,0 +1,20 @@
+# CodeLift verification compose for laravel/react-starter-kit.
+# Mounts the repo root at /app and runs codelift/verify.sh as the default
+# command. Single-service: this starter's tests use sqlite, so MySQL / Redis
+# are unnecessary.
+#
+# Usage (from this directory):
+#   docker compose run --rm app                # full verify: install → build → test
+#   docker compose run --rm app php artisan test
+#   docker compose run --rm app bash           # interactive shell
+#
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /app
+    volumes:
+      - ..:/app
+    init: true
+    tty: true
