@@ -45,6 +45,6 @@
             </flux:toast.group>
         @endpersist
 
-        @fluxScripts
+        @fluxScripts(["nonce" => $cspNonce ?? null])
     </body>
 </html>
