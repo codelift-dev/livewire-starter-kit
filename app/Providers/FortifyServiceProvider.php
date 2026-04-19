@@ -64,9 +64,16 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         RateLimiter::for('login', function (Request $request) {
-            $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())).'|'.$request->ip());
+            $email = Str::transliterate(Str::lower((string) $request->input(Fortify::username())));
+            $ip = $request->ip();
 
-            return Limit::perMinute(5)->by($throttleKey);
+            return [
+                // Burst guard: 5 attempts / minute per email + IP (unchanged).
+                Limit::perMinute(5)->by($email.'|'.$ip),
+                // Account-level cumulative guard: 20 attempts / hour per email,
+                // independent of IP. Closes the rotating-IP bypass.
+                Limit::perHour(20)->by('login-account|'.$email),
+            ];
         });
     }
 }
