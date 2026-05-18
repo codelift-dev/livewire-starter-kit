@@ -1,5 +1,17 @@
 # Laravel + Livewire Starter Kit
 
+> **CodeLift production-hardened fork.** This branch carries Docker-verified
+> production-hardening improvements on top of the official starter kit. A
+> follow-up `csp-nonce` branch additionally migrates the CSP to nonce-based
+> enforcement. Full verification logs, the rationale for every commit, and the
+> before/after diff are documented at:
+>
+> **https://codelift.lb-product.com/en/articles/laravel-livewire-starter-kit-hardening**
+> （日本語: https://codelift.lb-product.com/ja/articles/laravel-livewire-starter-kit-hardening ）
+>
+> CodeLift verifies official sample code in Docker and publishes the improved
+> forks — see [codelift.lb-product.com](https://codelift.lb-product.com).
+
 ## Introduction
 
 Our Laravel + [Livewire](https://livewire.laravel.com) starter kit provides a robust, modern starting point for building Laravel applications with a Livewire frontend.
